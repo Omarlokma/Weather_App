@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather App</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="container nav-wrapper">
+            <div class="logo-group">
+                <i class="fa-solid fa-cloud-sun logo-icon"></i>
+                <div class="logo-text">
+                    <span class="brand-name">Weather</span>
+                    <span class="tagline">tagline goes here</span>
+                </div>
+            </div>
+            
+            <ul class="nav-links">
+                <li><a href="index.html" class="active">Home</a></li>
+                <li><a href="#">News</a></li>
+                <li><a href="#">Live cameras</a></li>
+                <li><a href="#">Photos</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="main-bg">
+        <div class="container">
+            <div class="search-box">
+                <i class="fas fa-magnifying-glass search-icon"></i>
+                <input type="text" id="citySearch" placeholder="Find your location...">
+                <button id="geoBtn"><i class="fas fa-location-crosshairs"></i></button>
+            </div>
+
+            <div class="forecast-container" id="forecastContainer">
+                </div>
+        </div>
+    </div>
+
+    <script src="main.js"></script>
+</body>
+</html>
