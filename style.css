@@ -6,7 +6,7 @@
 }
 
 body {
-    background:  url('Images/Weather2.png') ;
+    background:  url('./Images/Weather2.png') ;
     background-size: cover;
     color: white;
     min-height: 100vh;
@@ -325,4 +325,5 @@ textarea.form-control {
         display: block;
         margin: 10px 0;
     }
+
 }
