@@ -12,7 +12,9 @@ async function getWeatherData(city) {
         if (data.error) throw new Error("City not found");
         renderWeather(data);
     } catch (err) {
-        container.innerHTML = `<p style="color:#009ad8; width:100%; text-align:center;">City not found. Please try again!</p>`;
+        if (container) {
+            container.innerHTML = `<p style="color:#009ad8; width:100%; text-align:center;">City not found. Please try again!</p>`;
+        }
     }
 }
 
@@ -52,17 +54,52 @@ function renderWeather(data) {
 }
 
 
-document.getElementById('citySearch').addEventListener('input', (e) => {
-    if (e.target.value.length > 2) getWeatherData(e.target.value);
-});
+const citySearch = document.getElementById('citySearch');
+if (citySearch) {
+    citySearch.addEventListener('input', (e) => {
+        if (e.target.value.length > 2) getWeatherData(e.target.value);
+    });
+}
 
+const geoBtn = document.getElementById('geoBtn');
+if (geoBtn) {
+    geoBtn.addEventListener('click', () => {
+        navigator.geolocation.getCurrentPosition(
+            (pos) => getWeatherData(`${pos.coords.latitude},${pos.coords.longitude}`),
+            () => getWeatherData('Cairo')
+        );
+    });
+}
 
-document.getElementById('geoBtn').addEventListener('click', () => {
-    navigator.geolocation.getCurrentPosition(
-        (pos) => getWeatherData(`${pos.coords.latitude},${pos.coords.longitude}`),
-        () => getWeatherData('Cairo')
-    );
-});
+if (container) {
+    window.onload = () => getWeatherData('Cairo');
+}
 
+const hamburger = document.getElementById('hamburger');
+const navLinks = document.getElementById('navLinks');
+const navOverlay = document.getElementById('navOverlay');
 
-window.onload = () => getWeatherData('Cairo');
+function toggleMenu() {
+    hamburger.classList.toggle('active');
+    navLinks.classList.toggle('active');
+    navOverlay.classList.toggle('active');
+    document.body.style.overflow = navLinks.classList.contains('active') ? 'hidden' : '';
+}
+
+if (hamburger) {
+    hamburger.addEventListener('click', toggleMenu);
+}
+
+if (navOverlay) {
+    navOverlay.addEventListener('click', toggleMenu);
+}
+
+if (navLinks) {
+    navLinks.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+            if (navLinks.classList.contains('active')) {
+                toggleMenu();
+            }
+        });
+    });
+}
